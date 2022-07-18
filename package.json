@@ -1,0 +1,25 @@
+{
+  "name": "input-integer",
+  "version": "0.0.0",
+  "description": "ui component",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohadToledo/input-integer.git"
+  },
+  "keywords": [
+    "slider"
+  ],
+  "author": "Johad Toledo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohadToledo/input-integer/issues"
+  },
+  "homepage": "https://github.com/JohadToledo/input-integer#readme",
+  "devDependencies": {
+    "budo": "^11.7.0"
+  }
+}
