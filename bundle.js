@@ -8,7 +8,11 @@ document.body.innerHTML = `<h1> ${x}</h1>`
 module.exports = inputInteger 
 
 function inputInteger () {
-    const name = 'Foo bar'
-    return name
+     const el = document.createElement('div')
+     const shadow = el.attachShadow({ mode: 'closed'})
+     shadow.innerHTML =  `
+     <input></input>
+     `
+    return el
 }
 },{}]},{},[1]);
