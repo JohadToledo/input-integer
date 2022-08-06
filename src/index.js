@@ -74,3 +74,4 @@ function handleOnmouseleaveandblur(e, input, min) {
   if (val < min) input.value = "";
 }
 
+
