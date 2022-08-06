@@ -1,27 +1,29 @@
-module.exports = inputInteger 
+module.exports = inputInteger;
 
-const sheet = new CSSStyleSheet
-const theme = getTheme()
-sheet.replaceSync(theme)
+const sheet = new CSSStyleSheet();
+const theme = getTheme();
+sheet.replaceSync(theme);
 
-function inputInteger () {
-     const el = document.createElement('div')
-     const shadow = el.attachShadow({ mode: 'closed' })
-     const input = document.createElement('input')
-     input.type = 'number'
-     input.min = 0
-     input.max = 150
-     input.onkeyup = (e) => handleOnkeyup(e, input)
+function inputInteger(opts) {
+  const { min, max } = opts;
+  const el = document.createElement("div");
+  const shadow = el.attachShadow({ mode: "closed" });
 
+  const input = document.createElement("input");
+  input.type = "number";
+  input.min = min;
+  input.max = max;
+  input.onkeyup = (e) => handleOnkeyup(e, input, min, max);
+  input.onmouseleave = (e) => handleOnmouseleaveandblur(e, input, min);
+  input.onblur = (e) => handleOnmouseleaveandblur(e, input, min);
 
-     shadow.append(input)
-    
-     shadow.adoptedStyleSheets = [sheet]
-    return el
+  shadow.append(input);
+  shadow.adoptedStyleSheets = [sheet];
+  return el;
 }
 
-function getTheme () {
-    return `
+function getTheme() {
+  return `
     :host {
         --b: 0, 0%;
         --color-white: var(--b), 100%;
@@ -54,12 +56,21 @@ function getTheme () {
         --shadow-xy: 4px 4px;
         box-shadow: var(--shadow-xy) var(--shadow-blur) hsla( var(--shadow-color), var(--shadow-opacity));
       }
-    `
+    `;
 }
 
-function handleOnkeyup(e, input){
-    console.log(e.target.value)
-    const val = Number(e.target.value)
-    if(val > input.max) input.value = 150
-    else if( val < input.min) input.value = 0
+function handleOnkeyup(e, input, min, max) {
+  const val = Number(e.target.value);
+
+  const valLen = val.toString().length;
+  const minLen = min.toString().length;
+
+  if (val > max) input.value = '';
+  else if (valLen === minLen && val < min) input.value = '';
 }
+
+function handleOnmouseleaveandblur(e, input, min) {
+  const val = Number(e.target.value);
+  if (val < min) input.value = "";
+}
+
