@@ -1,6 +1,6 @@
 # input-integer
 
-##usage
+## usage
 
 ```js
 
